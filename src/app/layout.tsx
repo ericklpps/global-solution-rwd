@@ -10,7 +10,7 @@ interface RootLayoutProps {
 }
 
 export const metadata = {
-  title: 'global-solution',
+  title: 'SOS Ocean',
   description: 'global solution, solução oceanos',
 };
 

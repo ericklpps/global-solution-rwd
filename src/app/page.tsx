@@ -4,7 +4,7 @@ export default function Page() {
   return (
     <>
       <main className="bg-white container mx-auto py-10 px-4">
-        <h1 className="text-center text-4xl font-bold mb-6">Quem somos?</h1>
+        <h1 className="text-center text-6xl font-bold mb-6">Quem somos?</h1>
         <div className="text-center">
           <img src="logo-branco.png" alt="Ocean" className="mx-auto" />
         </div>
