@@ -1,0 +1,146 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John",
+      "lastname": "Doe",
+      "date": "1990-01-01",
+      "username": "john_doe",
+      "email": "john.doe@example.com",
+      "password": "password123"
+    },
+    {
+      "id": 2,
+      "name": "Jane",
+      "lastname": "Smith",
+      "date": "1985-05-15",
+      "username": "jane_smith",
+      "email": "jane.smith@example.com",
+      "password": "password456"
+    },
+    {
+      "id": 3,
+      "name": "Alice",
+      "lastname": "Johnson",
+      "date": "1992-09-23",
+      "username": "alice_j",
+      "email": "alice.j@example.com",
+      "password": "password789"
+    },
+    {
+      "id": 4,
+      "name": "Bob",
+      "lastname": "Brown",
+      "date": "1988-12-10",
+      "username": "bob_brown",
+      "email": "bob.brown@example.com",
+      "password": "password101"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "username": "john_doe",
+      "image": "https://via.placeholder.com/150",
+      "comment": "Great day at the beach cleanup!",
+      "role": "Coletor",
+      "date": "2024-01-01"
+    },
+    {
+      "id": 2,
+      "username": "jane_smith",
+      "image": "https://via.placeholder.com/150",
+      "comment": "Helping sort the recyclables!",
+      "role": "Receptor",
+      "date": "2024-01-02"
+    },
+    {
+      "id": "7644",
+      "username": "andressz",
+      "date": "2024-05-27",
+      "image": "https://i0.wp.com/assets.b9.com.br/wp-content/uploads/2019/05/corona-parley.jpg?fit=1280%2C720&ssl=1",
+      "comment": "Hoje, fizemos a colheita de lixo na praia do boqueirao.",
+      "role": "Coletor"
+    },
+    {
+      "id": "8231",
+      "username": "dvdbfbdf",
+      "date": "2024-05-26",
+      "image": "https://i0.wp.com/assets.b9.com.br/wp-content/uploads/2019/05/corona-parley.jpg?fit=1280%2C720&ssl=1",
+      "comment": "adsadfvdsv fvfvdfvrf",
+      "role": "Coletor"
+    },
+    {
+      "id": "b932",
+      "username": "vdfbfnbgnbf",
+      "date": "2024-05-26",
+      "image": "https://i0.wp.com/assets.b9.com.br/wp-content/uploads/2019/05/corona-parley.jpg?fit=1280%2C720&ssl=1",
+      "comment": "cscdsevrvrf",
+      "role": "Coletor"
+    },
+    {
+      "id": "3a85",
+      "username": "TanMos",
+      "date": "2024-05-31",
+      "image": "https://i0.wp.com/assets.b9.com.br/wp-content/uploads/2019/05/corona-parley.jpg?fit=1280%2C720&ssl=1",
+      "comment": "Ajudando nas coletas",
+      "role": "Coletor"
+    },
+    {
+      "id": "a126",
+      "username": "andersoggb",
+      "image": "https://i0.wp.com/assets.b9.com.br/wp-content/uploads/2019/05/corona-parley.jpg?fit=1280%2C720&ssl=1",
+      "comment": "Addefedcvf",
+      "role": "Coletor",
+      "date": "2024-05-14"
+    },
+    {
+      "id": "1ef1",
+      "username": "leozao",
+      "image": "https://i0.wp.com/assets.b9.com.br/wp-content/uploads/2019/05/corona-parley.jpg?fit=1280%2C720&ssl=1",
+      "comment": "AAAAsdjkcdfov",
+      "role": "Coletor",
+      "date": "2024-05-26"
+    },
+    {
+      "id": "189c",
+      "username": "rafs",
+      "image": "https://i0.wp.com/assets.b9.com.br/wp-content/uploads/2019/05/corona-parley.jpg?fit=1280%2C720&ssl=1",
+      "comment": "ajudando",
+      "role": "Coletor",
+      "date": "2024-05-29"
+    },
+    {
+      "id": "2043",
+      "username": "leozera",
+      "image": "https://i0.wp.com/assets.b9.com.br/wp-content/uploads/2019/05/corona-parley.jpg?fit=1280%2C720&ssl=1",
+      "comment": "addcd",
+      "role": "Coletor",
+      "date": "2024-06-14"
+    },
+    {
+      "id": "8038",
+      "username": "mateuzin",
+      "image": "https://i0.wp.com/assets.b9.com.br/wp-content/uploads/2019/05/corona-parley.jpg?fit=1280%2C720&ssl=1",
+      "comment": "sfvcvdfvf",
+      "role": "Coletor",
+      "date": "2024-06-05"
+    },
+    {
+      "id": "90f4",
+      "username": "marcolasssss",
+      "image": "https://s2-g1.glbimg.com/dEnCUj1WtowIB9JWtVOIgKBhvi8=/0x0:1152x648/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2020/S/p/PkWVV8RUKp2S2lAQ7ADg/whatsapp-image-2020-05-11-at-17.08.22.jpeg",
+      "comment": "Praia amanheceu desta maneira, bora ajudar no projeto",
+      "role": "Coletor",
+      "date": "2024-05-28"
+    },
+    {
+      "id": "1e8b",
+      "username": "andremarques123",
+      "image": "https://s2-g1.glbimg.com/dEnCUj1WtowIB9JWtVOIgKBhvi8=/0x0:1152x648/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2020/S/p/PkWVV8RUKp2S2lAQ7ADg/whatsapp-image-2020-05-11-at-17.08.22.jpeg",
+      "comment": "AJudando no serviços",
+      "role": "Coletor",
+      "date": "2024-05-30"
+    }
+  ]
+}

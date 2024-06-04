@@ -5,6 +5,7 @@ export default function Voluntarios() {
     const [nomeCompleto, setNomeCompleto] = useState('');
     const [telefone, setTelefone] = useState('');
     const [pontoDeColeta, setPontoDeColeta] = useState('');
+    const [role, setRole] = useState('');
     const [inscricao, setInscricao] = useState(null);
 
     const handleSubmit = (event) => {
@@ -22,7 +23,7 @@ export default function Voluntarios() {
                 Voluntariar-se não é apenas uma ação, é um compromisso com a natureza e com as futuras gerações. <br /> 
                 <em>Seja parte da mudança que você deseja ver no mundo.</em>
             </p>
-            <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-6 p-6 border border-gray-300 rounded-lg shadow-lg bg-white">
+            <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-6 p-6 border border-gray-300 rounded-lg shadow-lg bg-white mb-8">
                 <div>
                     <label htmlFor="nomeCompleto" className="block mb-2 font-medium">Nome Completo:</label>
                     <input 
@@ -65,6 +66,20 @@ export default function Voluntarios() {
                         <option value="Praia do Balneário Maracanã">Praia do Balneário Maracanã</option>
                     </select>
                 </div>
+                <div>
+                    <label htmlFor="role" className="block mb-2 font-medium">Função:</label>
+                    <select 
+                        id="role" 
+                        value={role} 
+                        onChange={(event) => setRole(event.target.value)} 
+                        required 
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-900"
+                    >
+                        <option value="">Selecione sua função</option>
+                        <option value="Coletor">Coletor</option>
+                        <option value="Receptor">Receptor</option>
+                    </select>
+                </div>
                 <button 
                     type="submit" 
                     className="w-full bg-blue-900 text-white py-2 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-700 transition duration-300"
@@ -77,6 +92,19 @@ export default function Voluntarios() {
                     Inscrição registrada! Seu número de inscrição é {inscricao}. Apresente este comprovante no ponto de coleta.
                 </p>
             )}
+            <p className="text-lg mt-8 mb-6 text-center p-4 bg-blue-100 rounded-lg shadow-md border border-blue-300">
+                Ao se voluntariar e realizar as ações, você pode acumular pontos e trocar por produtos da nossa ONG. 
+                É uma forma de agradecermos pelo seu esforço e dedicação à causa. Quanto mais você participa, mais pontos acumula!
+            </p>
+            <br/>
+            <div className="flex justify-center">
+                <img 
+                    src="/brindes.png" 
+                    alt="Brindes da ONG" 
+                    className="max-w-md"
+                    style={{ transform: 'scale(1.3)' }}
+                />
+            </div>
         </div>
     );
 }
