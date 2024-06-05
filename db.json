@@ -1,146 +1,123 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "John",
+      "id": "1",
+      "user_name": "John",
       "lastname": "Doe",
-      "date": "1990-01-01",
-      "username": "john_doe",
-      "email": "john.doe@example.com",
-      "password": "password123"
+      "email": "john@example.com",
+      "password": "password123",
+      "date_of_birth": "1990-05-15"
     },
     {
-      "id": 2,
-      "name": "Jane",
+      "id": "2",
+      "user_name": "Jane",
       "lastname": "Smith",
-      "date": "1985-05-15",
-      "username": "jane_smith",
-      "email": "jane.smith@example.com",
-      "password": "password456"
+      "email": "jane@example.com",
+      "password": "password456",
+      "date_of_birth": "1985-09-20"
     },
     {
-      "id": 3,
-      "name": "Alice",
+      "id": "3",
+      "user_name": "Alice",
       "lastname": "Johnson",
-      "date": "1992-09-23",
-      "username": "alice_j",
-      "email": "alice.j@example.com",
-      "password": "password789"
+      "email": "alice@example.com",
+      "password": "password789",
+      "date_of_birth": "1995-02-10"
     },
     {
-      "id": 4,
-      "name": "Bob",
+      "id": "4",
+      "user_name": "Bob",
       "lastname": "Brown",
-      "date": "1988-12-10",
-      "username": "bob_brown",
-      "email": "bob.brown@example.com",
-      "password": "password101"
+      "email": "bob@example.com",
+      "password": "passwordabc",
+      "date_of_birth": "1980-11-30"
+    },
+    {
+      "id": "5",
+      "user_name": "Emily",
+      "lastname": "Davis",
+      "email": "emily@example.com",
+      "password": "passwordxyz",
+      "date_of_birth": "1988-07-25"
     }
   ],
   "posts": [
     {
-      "id": 1,
-      "username": "john_doe",
-      "image": "https://via.placeholder.com/150",
-      "comment": "Great day at the beach cleanup!",
-      "role": "Coletor",
-      "date": "2024-01-01"
+      "id": "1",
+      "username": "john",
+      "url_img": "https://example.com/image1.jpg",
+      "post_description": "This is my first post!",
+      "v_function": "Coletor",
+      "post_date": "2024-06-01"
     },
     {
-      "id": 2,
-      "username": "jane_smith",
-      "image": "https://via.placeholder.com/150",
-      "comment": "Helping sort the recyclables!",
-      "role": "Receptor",
-      "date": "2024-01-02"
+      "id": "2",
+      "username": "jane",
+      "url_img": "https://example.com/image2.jpg",
+      "post_description": "Just sharing some thoughts.",
+      "v_function": "Receptor",
+      "post_date": "2024-06-02"
     },
     {
-      "id": "7644",
-      "username": "andressz",
-      "date": "2024-05-27",
-      "image": "https://i0.wp.com/assets.b9.com.br/wp-content/uploads/2019/05/corona-parley.jpg?fit=1280%2C720&ssl=1",
-      "comment": "Hoje, fizemos a colheita de lixo na praia do boqueirao.",
-      "role": "Coletor"
+      "id": "3",
+      "username": "alice",
+      "url_img": "https://example.com/image3.jpg",
+      "post_description": "Feeling grateful today.",
+      "v_function": "Coletor",
+      "post_date": "2024-06-03"
     },
     {
-      "id": "8231",
-      "username": "dvdbfbdf",
-      "date": "2024-05-26",
-      "image": "https://i0.wp.com/assets.b9.com.br/wp-content/uploads/2019/05/corona-parley.jpg?fit=1280%2C720&ssl=1",
-      "comment": "adsadfvdsv fvfvdfvrf",
-      "role": "Coletor"
+      "id": "4",
+      "username": "bob",
+      "url_img": "https://example.com/image4.jpg",
+      "post_description": "Hello world!",
+      "v_function": "Coletor",
+      "post_date": "2024-06-04"
     },
     {
-      "id": "b932",
-      "username": "vdfbfnbgnbf",
-      "date": "2024-05-26",
-      "image": "https://i0.wp.com/assets.b9.com.br/wp-content/uploads/2019/05/corona-parley.jpg?fit=1280%2C720&ssl=1",
-      "comment": "cscdsevrvrf",
-      "role": "Coletor"
+      "id": "5",
+      "username": "emily",
+      "url_img": "https://example.com/image5.jpg",
+      "post_description": "Happy weekend everyone!",
+      "v_function": "Coletor",
+      "post_date": "2024-06-05"
+    }
+  ],
+  "volunteers": [
+    {
+      "id": "1",
+      "volunteer_name": "Erick Lopes",
+      "phone": "11911110000",
+      "collect_point": "Praia do boqueirao",
+      "user_function": "Coletor"
     },
     {
-      "id": "3a85",
-      "username": "TanMos",
-      "date": "2024-05-31",
-      "image": "https://i0.wp.com/assets.b9.com.br/wp-content/uploads/2019/05/corona-parley.jpg?fit=1280%2C720&ssl=1",
-      "comment": "Ajudando nas coletas",
-      "role": "Coletor"
+      "id": "2",
+      "volunteer_name": "Maria Silva",
+      "phone": "11922220000",
+      "collect_point": "Parque Central",
+      "user_function": "Organizador"
     },
     {
-      "id": "a126",
-      "username": "andersoggb",
-      "image": "https://i0.wp.com/assets.b9.com.br/wp-content/uploads/2019/05/corona-parley.jpg?fit=1280%2C720&ssl=1",
-      "comment": "Addefedcvf",
-      "role": "Coletor",
-      "date": "2024-05-14"
+      "id": "3",
+      "volunteer_name": "João Santos",
+      "phone": "11933330000",
+      "collect_point": "Rua das Flores",
+      "user_function": "Coletor"
     },
     {
-      "id": "1ef1",
-      "username": "leozao",
-      "image": "https://i0.wp.com/assets.b9.com.br/wp-content/uploads/2019/05/corona-parley.jpg?fit=1280%2C720&ssl=1",
-      "comment": "AAAAsdjkcdfov",
-      "role": "Coletor",
-      "date": "2024-05-26"
+      "id": "4",
+      "volunteer_name": "Ana Oliveira",
+      "phone": "11944440000",
+      "collect_point": "Praça da Liberdade",
+      "user_function": "Organizador"
     },
     {
-      "id": "189c",
-      "username": "rafs",
-      "image": "https://i0.wp.com/assets.b9.com.br/wp-content/uploads/2019/05/corona-parley.jpg?fit=1280%2C720&ssl=1",
-      "comment": "ajudando",
-      "role": "Coletor",
-      "date": "2024-05-29"
-    },
-    {
-      "id": "2043",
-      "username": "leozera",
-      "image": "https://i0.wp.com/assets.b9.com.br/wp-content/uploads/2019/05/corona-parley.jpg?fit=1280%2C720&ssl=1",
-      "comment": "addcd",
-      "role": "Coletor",
-      "date": "2024-06-14"
-    },
-    {
-      "id": "8038",
-      "username": "mateuzin",
-      "image": "https://i0.wp.com/assets.b9.com.br/wp-content/uploads/2019/05/corona-parley.jpg?fit=1280%2C720&ssl=1",
-      "comment": "sfvcvdfvf",
-      "role": "Coletor",
-      "date": "2024-06-05"
-    },
-    {
-      "id": "90f4",
-      "username": "marcolasssss",
-      "image": "https://s2-g1.glbimg.com/dEnCUj1WtowIB9JWtVOIgKBhvi8=/0x0:1152x648/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2020/S/p/PkWVV8RUKp2S2lAQ7ADg/whatsapp-image-2020-05-11-at-17.08.22.jpeg",
-      "comment": "Praia amanheceu desta maneira, bora ajudar no projeto",
-      "role": "Coletor",
-      "date": "2024-05-28"
-    },
-    {
-      "id": "1e8b",
-      "username": "andremarques123",
-      "image": "https://s2-g1.glbimg.com/dEnCUj1WtowIB9JWtVOIgKBhvi8=/0x0:1152x648/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2020/S/p/PkWVV8RUKp2S2lAQ7ADg/whatsapp-image-2020-05-11-at-17.08.22.jpeg",
-      "comment": "AJudando no serviços",
-      "role": "Coletor",
-      "date": "2024-05-30"
+      "id": "5",
+      "volunteer_name": "Pedro Costa",
+      "phone": "11955550000",
+      "collect_point": "Avenida Principal",
+      "user_function": "Coletor"
     }
   ]
 }

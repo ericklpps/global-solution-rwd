@@ -6,7 +6,7 @@ export default function Page() {
       <main className="bg-white container mx-auto py-10 px-4">
         <h1 className="text-center text-6xl font-bold mb-6">Quem somos?</h1>
         <div className="text-center">
-          <img src="logo-branco.png" alt="Ocean" className="mx-auto" />
+          <img src="logo-fundo-azul.png" alt="Ocean" className="mx-auto" />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
           <section className="bg-white p-6 rounded shadow-lg">
@@ -49,7 +49,7 @@ export default function Page() {
             <h2 className="text-3xl font-bold mb-4 text-center">Junte-se a Nós</h2>
             <p>Cada ação conta na luta contra a poluição dos oceanos. Junte-se à SOS Ocean e faça parte de um movimento global para preservar a beleza e a saúde de nossos mares. Juntos, podemos garantir que as futuras gerações herdem um planeta mais limpo e saudável, pois nossa praia, nosso compromisso.</p>
             <div className="text-center mt-4">
-              <a href="#" className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Saiba Mais</a>
+              <a href="/voluntarios" className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Saiba Mais</a>
             </div>
             <div className="absolute top-0 right-0 w-16 h-full bg-gradient-to-l from-gray-300 to-transparent"></div>
           </section>

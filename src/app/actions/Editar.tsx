@@ -55,12 +55,12 @@ const EditarPost: React.FC<EditPostProps> = ({ post, onPostEdited, onCancel }) =
             {/* POST */}
             <div className="border border-gray-200 p-4 rounded-lg relative">
                 <img 
-                    src={post.image} 
+                    src={post.url_img} 
                     alt={`Imagem do post ${post.id}`} 
                     className="w-full h-auto rounded-lg mb-4" 
                 />
                 <h1 className="text-lg font-bold">{post.username}</h1>
-                <p className="text-sm text-gray-500 mb-4">{post.comment}</p>
+                <p className="text-sm text-gray-500 mb-4">{post.post_description}</p>
 
                 {/* Botoes de editar e excluir */}
                 <div className="flex justify-center mt-2">
@@ -102,7 +102,7 @@ const EditarPost: React.FC<EditPostProps> = ({ post, onPostEdited, onCancel }) =
                             id="date"
                             type="date"
                             name="date"
-                            value={formData.date}
+                            value={formData.post_date}
                             onChange={handleChange}
                             className="border border-gray-600 px-4 py-2 rounded-md w-full"
                             required
@@ -114,7 +114,7 @@ const EditarPost: React.FC<EditPostProps> = ({ post, onPostEdited, onCancel }) =
                             id="image"
                             type="text"
                             name="image"
-                            value={formData.image}
+                            value={formData.url_img}
                             onChange={handleChange}
                             className="border border-gray-600 px-4 py-2 rounded-md w-full"
                             required
@@ -126,7 +126,7 @@ const EditarPost: React.FC<EditPostProps> = ({ post, onPostEdited, onCancel }) =
                             id="comment"
                             type="text"
                             name="comment"
-                            value={formData.comment}
+                            value={formData.post_description}
                             onChange={handleChange}
                             className="border border-gray-600 px-4 py-2 rounded-md w-full"
                             required
@@ -138,7 +138,7 @@ const EditarPost: React.FC<EditPostProps> = ({ post, onPostEdited, onCancel }) =
                             id="role"
                             type="text"
                             name="role"
-                            value={formData.role}
+                            value={formData.v_function}
                             onChange={handleChange}
                             className="border border-gray-600 px-4 py-2 rounded-md w-full"
                             required

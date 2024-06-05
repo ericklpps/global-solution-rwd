@@ -1,8 +1,8 @@
 export interface IPost {
     id?: number
     username: string;
-    date: string;
-    image: string;
-    comment: string;
-    role: string
+    post_date: string;
+    url_img: string;
+    post_description: string;
+    v_function: string
 }

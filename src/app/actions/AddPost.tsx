@@ -8,17 +8,15 @@ interface AdicionarPostProps {
 }
 
 const AdicionarPost: React.FC<AdicionarPostProps> = ({ onPostAdded }) => {
-    const [formData, setFormData] = useState<IPost>({ username: '', image: '', comment: '', role: '', date: '' });
+    const [formData, setFormData] = useState<IPost>({ username: '', url_img: '', post_description: '', v_function: '', post_date: '' });
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
-            // Since the JSON structure does not include an ID field,
-            // we don't need to include it in the form data
             const { id, ...postData } = formData;
             const newPost = await addPost(postData);
             alert('Post adicionado com sucesso');
-            setFormData({ username: '', image: '', comment: '', role: '', date: '' });
+            setFormData({ username: '', url_img: '', post_description: '', v_function: '', post_date: '' });
             onPostAdded(newPost);
         } catch (error) {
             console.error('Erro ao adicionar post', error);
@@ -55,7 +53,7 @@ const AdicionarPost: React.FC<AdicionarPostProps> = ({ onPostAdded }) => {
                         id="date"
                         type="date"
                         name="date"
-                        value={formData.date}
+                        value={formData.post_date}
                         onChange={handleChange}
                         className="border border-gray-600 px-4 py-2 rounded-md w-full"
                         required
@@ -67,7 +65,7 @@ const AdicionarPost: React.FC<AdicionarPostProps> = ({ onPostAdded }) => {
                         id="image"
                         type="text"
                         name="image"
-                        value={formData.image}
+                        value={formData.url_img}
                         onChange={handleChange}
                         className="border border-gray-600 px-4 py-2 rounded-md w-full"
                         required
@@ -79,7 +77,7 @@ const AdicionarPost: React.FC<AdicionarPostProps> = ({ onPostAdded }) => {
                         id="comment"
                         type="text"
                         name="comment"
-                        value={formData.comment}
+                        value={formData.post_description}
                         onChange={handleChange}
                         className="border border-gray-600 px-4 py-2 rounded-md w-full"
                         required
@@ -91,7 +89,7 @@ const AdicionarPost: React.FC<AdicionarPostProps> = ({ onPostAdded }) => {
                         id="role"
                         type="text"
                         name="role"
-                        value={formData.role}
+                        value={formData.v_function}
                         onChange={handleChange}
                         className="border border-gray-600 px-4 py-2 rounded-md w-full"
                         required
