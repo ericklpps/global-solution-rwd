@@ -95,6 +95,8 @@ export default function Voluntarios() {
             <p className="text-lg mt-8 mb-6 text-center p-4 bg-blue-100 rounded-lg shadow-md border border-blue-300">
                 Ao se voluntariar e realizar as ações, você pode acumular pontos e trocar por produtos da nossa ONG. 
                 É uma forma de agradecermos pelo seu esforço e dedicação à causa. Quanto mais você participa, mais pontos acumula!
+                Para registrar seus pontos, você deve ter um cadastro em nosso projeto, ao apresentar os comprovantes 
+                de ajuda em um ponto de coleta, você poderá fazer o acúmulo e realizar as trocas!
             </p>
             <br/>
             <div className="flex justify-center">

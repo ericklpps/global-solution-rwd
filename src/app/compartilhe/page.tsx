@@ -1,119 +1,107 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import { getPosts, deletePost } from "@/app/services/ApiPosts";
-import { IPost } from "@/app/types/pages";
 import AdicionarPost from "@/app/actions/AddPost";
 import EditarPost from "@/app/actions/Editar";
+import { IPost } from "@/app/types/pages";
 
-const PostsPage: React.FC = () => {
+const PostsPage = () => {
     const [posts, setPosts] = useState<IPost[]>([]);
     const [loading, setLoading] = useState(true);
     const [editingPost, setEditingPost] = useState<IPost | null>(null);
-    const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
+    const [selectedPost, setSelectedPost] = useState<IPost | null>(null);
 
-    // Função para carregar os posts do localStorage
     useEffect(() => {
-        const postsFromStorage = JSON.parse(localStorage.getItem('posts') || '[]');
-        setPosts(postsFromStorage);
-        setLoading(false);
+        const fetchPosts = async () => {
+            try {
+                const data = await getPosts();
+                setPosts(data);
+            } catch (error) {
+                console.error('Erro ao buscar postagens!', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchPosts();
     }, []);
 
-    // Função para salvar os posts no localStorage
-    const savePostsToLocalStorage = (posts: IPost[]) => {
-        localStorage.setItem('posts', JSON.stringify(posts));
-    };
-
-    // Função para adicionar um novo post
     const handlePostAdded = (newPost: IPost) => {
-        const updatedPosts = [...posts, newPost];
-        setPosts(updatedPosts);
-        savePostsToLocalStorage(updatedPosts);
+        setPosts([...posts, newPost]);
     };
 
-    // Função para excluir um post
-    const handleDelete = async (id: number) => {
+    const handleDelete = async (id: string) => {
         try {
             await deletePost(id);
-            const updatedPosts = posts.filter(post => post.id !== id);
-            setPosts(updatedPosts);
-            savePostsToLocalStorage(updatedPosts);
-            setSelectedPostId(null); // Limpar a seleção ao excluir
+            setPosts(posts.filter(post => post.id !== id));
         } catch (error) {
             console.error('Erro ao excluir postagem!', error);
         }
     };
 
-    // Função para editar um post
     const handleEdit = (post: IPost) => {
         setEditingPost(post);
     };
 
-    // Função para atualizar um post editado
     const handlePostEdited = (updatedPost: IPost) => {
-        const updatedPosts = posts.map(post => post.id === updatedPost.id ? updatedPost : post);
-        setPosts(updatedPosts);
-        savePostsToLocalStorage(updatedPosts);
+        setPosts(posts.map(post => post.id === updatedPost.id ? updatedPost : post));
         setEditingPost(null);
     };
 
-    // Função para cancelar a edição
     const handleCancelEdit = () => {
         setEditingPost(null);
     };
 
-    // Função para selecionar um post
-    const handleSelectPost = (id: number) => {
-        setSelectedPostId(id === selectedPostId ? null : id); // Alternar seleção
+    const handlePostClick = (post: IPost) => {
+        setSelectedPost(post);
     };
 
     return (
-        <section className="flex justify-center items-center flex-col">
-            <br/>
-            <h1 className="text-center font-bold text-4xl mb-8">Registre seu momento de ajuda abaixo</h1>
-            {loading ? (
+        <section className="container mx-auto p-4">
+            <h1 className="text-center font-bold text-4xl mb-8">Postagens dos nossos voluntários</h1>
+            <p className="text-center text-lg font-semibold mb-8">Esta é uma aba para nossos colaboradores registrarem os momentos fortalecendo nossa ONG</p>            {loading ? (
                 <p>Carregando...</p>
             ) : posts.length === 0 ? (
-                <p>Sem postagens para exibir, adicione abaixo</p>
+                <p className="text-center text-gray-500">Nenhuma postagem encontrada, adicione no formulário abaixo!</p>
             ) : (
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                     {posts.map(post => (
-                        <div key={post.id} className="border border-gray-200 p-4 rounded-lg relative text-center">
-                            <img 
-                                src={post.image} 
-                                alt={`Imagem do post ${post.id}`} 
-                                className="w-full h-auto rounded-lg mb-4 cursor-pointer" 
-                                onClick={() => handleSelectPost(post.id!)} 
-                            />
-                            <p className="text-lg font-bold">Usuario: {post.username}</p>
-                            <p className="text-sm text-gray-500 mb-2">Data: {post.date}</p>
-                            <p className="text-sm text-gray-500 mb-4">{post.comment}</p>
-                            <p className="text-sm text-gray-500 mb-4">{post.role}</p>
-                            {selectedPostId === post.id && (
-                                <div>
-                                    <button 
-                                        onClick={() => handleEdit(post)} 
-                                        className="bg-green-500 text-white px-4 py-2 mr-2"
-                                    >
-                                        Editar
-                                    </button>
-                                    <button 
-                                        onClick={() => handleDelete(post.id!)} 
-                                        className="bg-yellow-500 text-white px-4 py-2"
-                                    >
-                                        Excluir
-                                    </button>
+                        <div key={post.id} className="border rounded-lg shadow-md bg-white text-center">
+                            <div className="w-32 h-32 mx-auto overflow-hidden rounded-t-lg cursor-pointer" onClick={() => handlePostClick(post)}>
+                                <img src={post.url_img} alt={`Imagem do post ${post.id}`} className="w-full h-full object-cover" />
+                            </div>
+                            <div className="p-4">
+                                <h3 className="font-bold text-lg mt-2">{post.username}</h3>
+                                <p className="text-xs text-gray-500 mb-2">{post.post_date}</p>
+                                <p className="text-xs text-gray-500 mb-2">Função: {post.v_function}</p>
+                                <p className="text-xs text-gray-500 mb-2">Descrição: {post.post_description}</p>
+                                <div className="flex justify-center space-x-4">
+                                    {selectedPost && selectedPost.id === post.id && (
+                                        <>
+                                            <button
+                                                onClick={() => handleEdit(post)}
+                                                className="bg-blue-600 text-white px-4 py-2 rounded-md"
+                                            >
+                                                Editar
+                                            </button>
+                                            <button
+                                                onClick={() => handleDelete(post.id!)}
+                                                className="bg-blue-600 text-white px-4 py-2 rounded-md"
+                                            >
+                                                Excluir
+                                            </button>
+                                        </>
+                                    )}
                                 </div>
-                            )}
+                            </div>
                         </div>
                     ))}
                 </div>
             )}
-            <br/>
             <AdicionarPost onPostAdded={handlePostAdded} />
             {editingPost && (
-                <EditarPost 
-                    post={editingPost} 
-                    onPostEdited={handlePostEdited} 
+                <EditarPost
+                    post={editingPost}
+                    onPostEdited={handlePostEdited}
                     onCancel={handleCancelEdit}
                 />
             )}

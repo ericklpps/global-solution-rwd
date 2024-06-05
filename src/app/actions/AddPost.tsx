@@ -3,20 +3,27 @@ import React, { useState } from "react";
 import { addPost } from "@/app/services/ApiPosts";
 import { IPost } from "@/app/types/pages";
 
-interface AdicionarPostProps {
-    onPostAdded: (newPost: IPost) => void;
-}
-
-const AdicionarPost: React.FC<AdicionarPostProps> = ({ onPostAdded }) => {
-    const [formData, setFormData] = useState<IPost>({ username: '', url_img: '', post_description: '', v_function: '', post_date: '' });
+const AdicionarPost = ({ onPostAdded }) => {
+    const [formData, setFormData] = useState<IPost>({
+        username: '',
+        post_date: '',
+        url_img: '',
+        post_description: '',
+        v_function: ''
+    });
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
-            const { id, ...postData } = formData;
-            const newPost = await addPost(postData);
+            const newPost = await addPost(formData);
             alert('Post adicionado com sucesso');
-            setFormData({ username: '', url_img: '', post_description: '', v_function: '', post_date: '' });
+            setFormData({
+                username: '',
+                post_date: '',
+                url_img: '',
+                post_description: '',
+                v_function: ''
+            });
             onPostAdded(newPost);
         } catch (error) {
             console.error('Erro ao adicionar post', error);
@@ -24,78 +31,78 @@ const AdicionarPost: React.FC<AdicionarPostProps> = ({ onPostAdded }) => {
         }
     };
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = event.target;
         setFormData({
             ...formData,
-            [event.target.name]: event.target.value
+            [name]: value
         });
     };
 
     return (
-        <div className="flex flex-col items-center justify-center h-full">
-            <h1 className="text-2xl font-bold mb-4">Adicionar Post</h1>
-            <form onSubmit={handleSubmit} className="w-full max-w-md">
-                <div className="mb-4">
-                    <label htmlFor="username" className="block text-gray-700 font-bold mb-2">Usuario:</label>
+        <div className="mt-8 bg-white p-6 rounded-lg shadow-md">
+            <h1 className="text-2xl font-bold mb-4">Adicione uma postagem</h1>
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                    <label htmlFor="username" className="block text-gray-700 font-bold mb-2">Usuário:</label>
                     <input
                         id="username"
                         type="text"
                         name="username"
                         value={formData.username}
                         onChange={handleChange}
-                        className="border border-gray-600 px-4 py-2 rounded-md w-full"
+                        className="border border-gray-300 px-4 py-2 rounded-md w-full"
                         required
                     />
                 </div>
-                <div className="mb-4">
-                    <label htmlFor="date" className="block text-gray-700 font-bold mb-2">Data de ação:</label>
+                <div>
+                    <label htmlFor="post_date" className="block text-gray-700 font-bold mb-2">Data de ajuda:</label>
                     <input
-                        id="date"
+                        id="post_date"
                         type="date"
-                        name="date"
+                        name="post_date"
                         value={formData.post_date}
                         onChange={handleChange}
-                        className="border border-gray-600 px-4 py-2 rounded-md w-full"
+                        className="border border-gray-300 px-4 py-2 rounded-md w-full"
                         required
                     />
                 </div>
-                <div className="mb-4">
-                    <label htmlFor="image" className="block text-gray-700 font-bold mb-2">URL da imagem:</label>
+                <div>
+                    <label htmlFor="url_img" className="block text-gray-700 font-bold mb-2">URL da Imagem:</label>
                     <input
-                        id="image"
+                        id="url_img"
                         type="text"
-                        name="image"
+                        name="url_img"
                         value={formData.url_img}
                         onChange={handleChange}
-                        className="border border-gray-600 px-4 py-2 rounded-md w-full"
+                        className="border border-gray-300 px-4 py-2 rounded-md w-full"
                         required
                     />
                 </div>
-                <div className="mb-4">
-                    <label htmlFor="comment" className="block text-gray-700 font-bold mb-2">Faça um comentário:</label>
-                    <input
-                        id="comment"
-                        type="text"
-                        name="comment"
+                <div>
+                    <label htmlFor="post_description" className="block text-gray-700 font-bold mb-2">Faça um comentário:</label>
+                    <textarea
+                        id="post_description"
+                        name="post_description"
                         value={formData.post_description}
                         onChange={handleChange}
-                        className="border border-gray-600 px-4 py-2 rounded-md w-full"
+                        className="border border-gray-300 px-4 py-2 rounded-md w-full"
                         required
                     />
                 </div>
-                <div className="mb-4">
-                    <label htmlFor="role" className="block text-gray-700 font-bold mb-2">Coletor ou Receptor?:</label>
+                <div>
+                    <label htmlFor="v_function" className="block text-gray-700 font-bold mb-2">Função:</label>
                     <input
-                        id="role"
+                        id="v_function"
                         type="text"
-                        name="role"
+                        name="v_function"
                         value={formData.v_function}
                         onChange={handleChange}
-                        className="border border-gray-600 px-4 py-2 rounded-md w-full"
+                        className="border border-gray-300 px-4 py-2 rounded-md w-full"
                         required
                     />
                 </div>
-                <button className="bg-red-500 text-white px-4 py-2 rounded-md" type="submit">Adicionar Postagem</button>
+                <button className="bg-customColor text-white px-4 py-2 rounded-md w-full" type="submit">Adicionar Post</button>
             </form>
         </div>
     );
