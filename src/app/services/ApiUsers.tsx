@@ -1,3 +1,4 @@
+// ApiUsers.ts
 import axios from 'axios';
 import { IUser } from '@/app/types/pages';
 
@@ -19,5 +20,14 @@ export const loginUser = async (email: string, password: string): Promise<IUser 
     }
   } catch (error) {
     throw new Error('Error while fetching user data');
+  }
+};
+
+export const addUser = async (userData: IUser): Promise<IUser | null> => {
+  try {
+    const response = await api.post<IUser>('/users', userData);
+    return response.data;
+  } catch (error) {
+    throw new Error('Error ao adicionar usuário');
   }
 };

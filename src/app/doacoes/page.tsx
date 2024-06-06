@@ -1,16 +1,43 @@
 "use client"
 import { useState } from 'react';
+import { addDonation } from '@/app/services/ApiDonations'; // Certifique-se de importar corretamente a função de adicionar doação
 
 export default function Doacoes() {
     const [nome, setNome] = useState('');
-    const [imagem, setImagem] = useState(null);
+    const [imagem, setImagem] = useState<File | null>(null);
     const [enviado, setEnviado] = useState(false);
+    const [mensagemErro, setMensagemErro] = useState<string | null>(null);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        // Aqui você pode adicionar a lógica para enviar os dados para o backend
-        // Por enquanto, apenas definimos enviado como true para exibir a mensagem de confirmação
-        setEnviado(true);
+        if (!imagem) {
+            setMensagemErro('Por favor, selecione uma imagem.');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+            const base64String = reader.result as string;
+
+            const newDonation = {
+                donator_name: nome,
+                comprovante: base64String,
+            };
+
+            try {
+                await addDonation(newDonation);
+                setEnviado(true);
+                setMensagemErro(null);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000); // Recarrega a página após 3 segundos
+            } catch (error) {
+                console.error('Erro ao enviar a doação:', error);
+                setMensagemErro('Erro ao enviar a doação. Tente novamente.');
+            }
+        };
+
+        reader.readAsDataURL(imagem);
     };
 
     return (
@@ -38,7 +65,7 @@ export default function Doacoes() {
                                 type="file" 
                                 accept="image/*" 
                                 id="imagem" 
-                                onChange={(event) => setImagem(event.target.files[0])} 
+                                onChange={(event) => setImagem(event.target.files ? event.target.files[0] : null)} 
                                 required 
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-900"
                             />
@@ -51,6 +78,7 @@ export default function Doacoes() {
                         Enviar
                     </button>
                     {enviado && <p className="mt-4 text-green-600">Enviado! Muito obrigado pela sua contribuição.</p>}
+                    {mensagemErro && <p className="mt-4 text-red-600">{mensagemErro}</p>}
                 </form>
                 <div className="w-full md:w-1/3 flex justify-center">
                     <img 

@@ -21,3 +21,8 @@ export interface IVolunteer{
     collect_point: string,
     user_function: string
 }
+export interface IDonations{
+    id?:string,
+    donator_name: string,
+    comprovante : string
+}
