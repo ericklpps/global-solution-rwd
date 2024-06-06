@@ -12,7 +12,6 @@ export const loginUser = async (email: string, password: string): Promise<IUser 
       params: { email, password },
     });
 
-    // Verifica se a resposta possui algum usuário e retorna o primeiro encontrado
     if (response.data.length > 0) {
       return response.data[0];
     } else {

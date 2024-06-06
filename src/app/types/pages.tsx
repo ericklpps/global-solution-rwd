@@ -6,13 +6,15 @@ export interface IPost {
     post_description: string,
     v_function: string
 }
-export interface IUser{
+export interface IUser {
     id?: string,
     user_name: string,
     lastname: string,
+    cep: string,
     email: string,
     password: string,
-    date_of_birth: string
+    date_of_birth: string,
+    address: IAddress
 }
 export interface IVolunteer{
     id?: string,
@@ -25,4 +27,11 @@ export interface IDonations{
     id?:string,
     donator_name: string,
     comprovante : string
+}
+export interface IAddress {
+    logradouro: string;
+    complemento?: string;
+    bairro: string;
+    localidade: string;
+    uf: string;
 }

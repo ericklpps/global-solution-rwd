@@ -38,7 +38,7 @@ export default function Acoes (){
       </p>
       
       <div className="text-center mt-4">
-        <a href="/voluntarios" className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800">Clique para se voluntariar</a>
+        <a href="/voluntarios" className="bg-customColor  text-white px-4 py-2 rounded-md hover:bg-blue-800">Clique para se voluntariar</a>
       </div>
     </section>
     </main>

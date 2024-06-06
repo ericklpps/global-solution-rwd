@@ -1,24 +1,68 @@
 "use client"
 import { useState } from 'react';
 import { addUser } from '@/app/services/ApiUsers';
+import axios from 'axios';
+import { IUser, IAddress } from '@/app/types/pages';
 
 export default function CadastroPage() {
   const [user_name, setUser_name] = useState('');
   const [lastname, setLastname] = useState('');
+  const [cep, setCep] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [date_of_birth, setDateOfBirth] = useState('');
+  const [address, setAddress] = useState<IAddress | null>(null);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleCepChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const cepValue = event.target.value;
+    setCep(cepValue);
+
+    if (cepValue.length === 8) {
+      try {
+        const response = await axios.get(`https://viacep.com.br/ws/${cepValue}/json/`);
+        if (response.data.erro) {
+          setErrorMessage('CEP não encontrado');
+        } else {
+          const addressData: IAddress = {
+            logradouro: response.data.logradouro,
+            complemento: response.data.complemento,
+            bairro: response.data.bairro,
+            localidade: response.data.localidade,
+            uf: response.data.uf,
+          };
+          setAddress(addressData);
+          setErrorMessage(''); // Clear the error message if address is found
+        }
+      } catch (error) {
+        setErrorMessage('Erro ao buscar endereço');
+      }
+    }
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // Formatar a data de nascimento
     const formattedDateOfBirth = formatDateOfBirth(date_of_birth);
 
+    if (address === null) {
+      setErrorMessage('Endereço inválido');
+      return;
+    }
+
     try {
-      await addUser({ user_name, lastname, email, password, date_of_birth: formattedDateOfBirth });
+      const userData: IUser = {
+        user_name,
+        lastname,
+        cep,
+        email,
+        password,
+        date_of_birth: formattedDateOfBirth,
+        address
+      };
+      await addUser(userData);
       setSuccessMessage('Cadastro realizado com sucesso! Redirecionando para a página de login...');
       setTimeout(() => {
         // Redirecionar para a página de login após 3 segundos
@@ -57,6 +101,17 @@ export default function CadastroPage() {
             type="text"
             value={lastname}
             onChange={(e) => setLastname(e.target.value)}
+            required
+            className="border border-gray-300 rounded-md mt-1 px-3 py-2 w-full focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="cep" className="block text-sm font-medium text-gray-700">CEP</label>
+          <input
+            id="cep"
+            type="text"
+            value={cep}
+            onChange={handleCepChange}
             required
             className="border border-gray-300 rounded-md mt-1 px-3 py-2 w-full focus:outline-none focus:border-blue-500"
           />

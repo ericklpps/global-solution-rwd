@@ -63,6 +63,22 @@
       "email": "pedro@example.com",
       "password": "pedro123",
       "date_of_birth": "2000-08-01"
+    },
+    {
+      "id": "d717",
+      "user_name": "Ricardo",
+      "lastname": "Pereira",
+      "cep": "04119010",
+      "email": "ricardo@example.com",
+      "password": "ricardo123",
+      "date_of_birth": "2000-04-01",
+      "address": {
+        "logradouro": "Rua Conde de Irajá",
+        "complemento": "",
+        "bairro": "Vila Mariana",
+        "localidade": "São Paulo",
+        "uf": "SP"
+      }
     }
   ],
   "posts": [
