@@ -3,7 +3,13 @@ import React, { useState } from "react";
 import { editPost } from "@/app/services/ApiPosts";
 import { IPost } from "@/app/types/pages";
 
-const EditarPost = ({ post, onPostEdited, onCancel }) => {
+interface EditarPostProps {
+    post: IPost;
+    onPostEdited: (post: IPost) => void;
+    onCancel: () => void;
+}
+
+const EditarPost: React.FC<EditarPostProps> = ({ post, onPostEdited, onCancel }) => {
     const [formData, setFormData] = useState<IPost>({ ...post });
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -90,7 +96,7 @@ const EditarPost = ({ post, onPostEdited, onCancel }) => {
                     />
                 </div>
                 <button className="bg-red-500 text-white px-4 py-2 rounded-md w-full" type="submit">Salvar</button>
-                <button className="bg-gray-500 text-white px-4 py-2 rounded-md w-full mt-2" onClick={onCancel}>Cancelar</button>
+                <button className="bg-gray-500 text-white px-4 py-2 rounded-md w-full mt-2" onClick={onCancel} type="button">Cancelar</button>
             </form>
         </div>
     );

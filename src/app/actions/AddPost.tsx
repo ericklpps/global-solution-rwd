@@ -3,7 +3,11 @@ import React, { useState } from "react";
 import { addPost } from "@/app/services/ApiPosts";
 import { IPost } from "@/app/types/pages";
 
-const AdicionarPost = ({ onPostAdded }) => {
+interface AdicionarPostProps {
+    onPostAdded: (post: IPost) => void;
+}
+
+const AdicionarPost: React.FC<AdicionarPostProps> = ({ onPostAdded }) => {
     const [formData, setFormData] = useState<IPost>({
         username: '',
         post_date: '',
