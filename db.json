@@ -94,6 +94,27 @@
       "phone": "11955550000",
       "collect_point": "Avenida Principal",
       "user_function": "Coletor"
+    },
+    {
+      "id": "3822",
+      "volunteer_name": "Erick Lopes",
+      "phone": "11931409054",
+      "collect_point": "Praia da Aviação",
+      "user_function": "Receptor"
+    },
+    {
+      "id": "ad37",
+      "volunteer_name": "Ednaldo Pereira",
+      "phone": "(11) 99999-9999",
+      "collect_point": "Praia da Aviação",
+      "user_function": "Receptor"
+    },
+    {
+      "id": "d989",
+      "volunteer_name": "Edson Arantes",
+      "phone": "11985478541",
+      "collect_point": "Praia do Boqueirão",
+      "user_function": "Coletor"
     }
   ]
 }

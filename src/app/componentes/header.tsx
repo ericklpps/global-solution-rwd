@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <header className="bg-customColor text-white py-6">
       <div className="container mx-auto flex items-center">
-        <img src="/logo-fundo-azul.png" alt="Ocean" className="h-12 mr-6" />      
+        <img src="/logo-certo-fundo-azul.png" alt="Ocean" className="h-12 mr-6" />      
         <nav>
           <ul className="flex space-x-6 text-lg font-semibold items-center">
             <li>

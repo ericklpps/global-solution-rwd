@@ -46,7 +46,7 @@ export default function Doacoes() {
                     </div>
                     <button 
                         type="submit" 
-                        className="w-full bg-blue-900 text-white py-2 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-700 transition duration-300"
+                        className="w-full bg-customColor text-white py-2 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-700 transition duration-300"
                     >
                         Enviar
                     </button>

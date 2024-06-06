@@ -1,4 +1,3 @@
-// ApiPosts.js
 import axios from "axios";
 import { IPost } from "@/app/types/pages";
 
