@@ -55,6 +55,14 @@
       "email": "ericksilva@example.com",
       "password": "12345678",
       "date_of_birth": "2003-09-30"
+    },
+    {
+      "id": "1717",
+      "user_name": "Pedro",
+      "lastname": "Sampaio",
+      "email": "pedro@example.com",
+      "password": "pedro123",
+      "date_of_birth": "2000-08-01"
     }
   ],
   "posts": [

@@ -37,7 +37,7 @@ export default function CadastroPage() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl text-center font-bold mb-4">Cadastre-se para participar!</h1>
+      <h1 className="text-3xl text-center font-bold mb-4">Cadastre-se para participar do programa de pontos!</h1>
       <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-8 rounded-md shadow-md">
         <div className="mb-4">
           <label htmlFor="user_name" className="block text-sm font-medium text-gray-700">Nome</label>
