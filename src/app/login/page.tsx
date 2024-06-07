@@ -1,4 +1,3 @@
-// app/login/page.tsx
 "use client"
 import { useState } from 'react';
 import { loginUser } from '@/app/services/ApiUsers';
@@ -47,7 +46,12 @@ export default function LoginPage() {
   );
 }
 
-function LoginForm({ onLogin, error }: { onLogin: (email: string, password: string) => void; error: string }) {
+type LoginFormProps = {
+  onLogin: (email: string, password: string) => void;
+  error: string;
+};
+
+function LoginForm({ onLogin, error }: LoginFormProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -87,7 +91,7 @@ function LoginForm({ onLogin, error }: { onLogin: (email: string, password: stri
       <button type="submit" className="bg-customColor text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
         Login
       </button>
-      {error && <p className="text-red-500 mt-2">{error}</p>}
+      {error && <p className="text-red-500 mt-2 text-center">{error}</p>}
     </form>
   );
 }

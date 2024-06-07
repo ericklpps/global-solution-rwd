@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import { getPosts, deletePost } from "@/app/services/ApiPosts";
 import AdicionarPost from "@/app/actions/AddPost";
@@ -57,16 +57,17 @@ const PostsPage = () => {
 
     return (
         <section className="container mx-auto p-4">
-            <h1 className="text-center font-bold text-4xl mb-8">Postagens dos nossos voluntários</h1>
-            <p className="text-center text-lg font-semibold mb-8">Esta é uma aba para nossos colaboradores registrarem os momentos fortalecendo nossa ONG</p>            {loading ? (
-                <p>Carregando...</p>
+            <h1 className="text-center font-bold text-4xl mb-4">Postagens dos nossos voluntários</h1>
+            <p className="text-center text-lg font-semibold mb-8">Esta é uma aba para nossos colaboradores registrarem os momentos fortalecendo nossa ONG</p>
+            {loading ? (
+                <p className="text-center">Carregando...</p>
             ) : posts.length === 0 ? (
                 <p className="text-center text-gray-500">Nenhuma postagem encontrada, adicione no formulário abaixo!</p>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                     {posts.map(post => (
                         <div key={post.id} className="border rounded-lg shadow-md bg-white text-center">
-                            <div className="w-32 h-32 mx-auto overflow-hidden rounded-t-lg cursor-pointer" onClick={() => handlePostClick(post)}>
+                            <div className="w-full h-48 overflow-hidden rounded-t-lg cursor-pointer" onClick={() => handlePostClick(post)}>
                                 <img src={post.url_img} alt={`Imagem do post ${post.id}`} className="w-full h-full object-cover" />
                             </div>
                             <div className="p-4">
@@ -85,7 +86,7 @@ const PostsPage = () => {
                                             </button>
                                             <button
                                                 onClick={() => handleDelete(post.id!)}
-                                                className="bg-blue-600 text-white px-4 py-2 rounded-md"
+                                                className="bg-red-600 text-white px-4 py-2 rounded-md"
                                             >
                                                 Excluir
                                             </button>

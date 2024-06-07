@@ -39,7 +39,7 @@ export default function CadastroPage() {
     return response.json();
   };
 
-  // Função  data de nascimento no formato "ano-mês-dia"
+  // Função data de nascimento no formato "ano-mês-dia"
   const formatDateOfBirth = (date: string): string => {
     const [year, month, day] = date.split('-');
     return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
@@ -49,7 +49,7 @@ export default function CadastroPage() {
     <div className="container mx-auto p-4">
       <h1 className="text-3xl text-center font-bold mb-4">Cadastre-se para participar do programa de pontos!</h1>
       <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-8 rounded-md shadow-md space-y-4">
-        <div className="mb-4">
+        <div>
           <label htmlFor="user_name" className="block text-sm font-medium text-gray-700">Nome</label>
           <input
             id="user_name"
@@ -60,7 +60,7 @@ export default function CadastroPage() {
             className="border border-gray-300 rounded-md mt-1 px-3 py-2 w-full focus:outline-none focus:border-blue-500"
           />
         </div>
-        <div className="mb-4">
+        <div>
           <label htmlFor="lastname" className="block text-sm font-medium text-gray-700">Sobrenome</label>
           <input
             id="lastname"
@@ -71,7 +71,7 @@ export default function CadastroPage() {
             className="border border-gray-300 rounded-md mt-1 px-3 py-2 w-full focus:outline-none focus:border-blue-500"
           />
         </div>
-        <div className="mb-4">
+        <div>
           <label htmlFor="date_of_birth" className="block text-sm font-medium text-gray-700">Data de Nascimento (AAAA-MM-DD)</label>
           <input
             id="date_of_birth"
@@ -84,7 +84,7 @@ export default function CadastroPage() {
           />
           <p className="text-xs text-gray-500">Digite a data de nascimento no formato "ano-mês-dia" (AAAA-MM-DD)</p>
         </div>
-        <div className="mb-4">
+        <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
           <input
             id="email"
@@ -95,7 +95,7 @@ export default function CadastroPage() {
             className="border border-gray-300 rounded-md mt-1 px-3 py-2 w-full focus:outline-none focus:border-blue-500"
           />
         </div>
-        <div className="mb-4">
+        <div>
           <label htmlFor="password" className="block text-sm font-medium text-gray-700">Senha</label>
           <input
             id="password"
@@ -106,7 +106,7 @@ export default function CadastroPage() {
             className="border border-gray-300 rounded-md mt-1 px-3 py-2 w-full focus:outline-none focus:border-blue-500"
           />
         </div>
-        <div className="mb-4">
+        <div>
           <label htmlFor="cep" className="block text-sm font-medium text-gray-700">CEP</label>
           <input
             id="cep"

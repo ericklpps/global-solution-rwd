@@ -6,7 +6,6 @@ export default function Header() {
       <div className="container mx-auto flex flex-wrap items-center justify-between">
         <div className="flex items-center">
           <img src="/logo-certo-fundo-azul.png" alt="Ocean" className="h-10 sm:h-12 mr-4 sm:mr-6" />
-          <span className="text-xl sm:text-2xl font-bold">Ocean</span>
         </div>
         <nav className="w-full sm:w-auto">
           <ul className="flex flex-wrap justify-center sm:justify-end space-x-4 sm:space-x-6 text-sm sm:text-lg font-semibold items-center">

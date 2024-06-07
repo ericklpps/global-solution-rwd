@@ -1,6 +1,6 @@
-"use client"
+"use client";
 import { useState } from 'react';
-import { addDonation } from '@/app/services/ApiDonations'; // Certifique-se de importar corretamente a função de adicionar doação
+import { addDonation } from '@/app/services/ApiDonations';
 
 export default function Doacoes() {
     const [nome, setNome] = useState('');
@@ -57,6 +57,7 @@ export default function Doacoes() {
                                 onChange={(event) => setNome(event.target.value)} 
                                 required 
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-900"
+                                aria-label="Nome do contribuinte"
                             />
                         </div>
                         <div className="flex flex-col">
@@ -68,6 +69,7 @@ export default function Doacoes() {
                                 onChange={(event) => setImagem(event.target.files ? event.target.files[0] : null)} 
                                 required 
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-900"
+                                aria-label="Comprovante de doação"
                             />
                         </div>
                     </div>
@@ -83,7 +85,7 @@ export default function Doacoes() {
                 <div className="w-full md:w-1/3 flex justify-center">
                     <img 
                         src="/qr-code.png" 
-                        alt="QR Code" 
+                        alt="QR Code para doação" 
                         className="max-w-xs h-auto"
                     />
                 </div>
