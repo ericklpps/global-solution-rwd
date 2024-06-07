@@ -1,45 +1,16 @@
-"use client"
+"use client";
 import { useState } from 'react';
 import { addUser } from '@/app/services/ApiUsers';
-import axios from 'axios';
-import { IUser, IAddress } from '@/app/types/pages';
 
 export default function CadastroPage() {
   const [user_name, setUser_name] = useState('');
   const [lastname, setLastname] = useState('');
-  const [cep, setCep] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [cep, setCep] = useState('');
   const [date_of_birth, setDateOfBirth] = useState('');
-  const [address, setAddress] = useState<IAddress | null>(null);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
-  const handleCepChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const cepValue = event.target.value;
-    setCep(cepValue);
-
-    if (cepValue.length === 8) {
-      try {
-        const response = await axios.get(`https://viacep.com.br/ws/${cepValue}/json/`);
-        if (response.data.erro) {
-          setErrorMessage('CEP não encontrado');
-        } else {
-          const addressData: IAddress = {
-            logradouro: response.data.logradouro,
-            complemento: response.data.complemento,
-            bairro: response.data.bairro,
-            localidade: response.data.localidade,
-            uf: response.data.uf,
-          };
-          setAddress(addressData);
-          setErrorMessage(''); // Clear the error message if address is found
-        }
-      } catch (error) {
-        setErrorMessage('Erro ao buscar endereço');
-      }
-    }
-  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -47,22 +18,9 @@ export default function CadastroPage() {
     // Formatar a data de nascimento
     const formattedDateOfBirth = formatDateOfBirth(date_of_birth);
 
-    if (address === null) {
-      setErrorMessage('Endereço inválido');
-      return;
-    }
-
     try {
-      const userData: IUser = {
-        user_name,
-        lastname,
-        cep,
-        email,
-        password,
-        date_of_birth: formattedDateOfBirth,
-        address
-      };
-      await addUser(userData);
+      const address = await fetchAddress(cep);
+      await addUser({ user_name, lastname, cep, email, password, date_of_birth: formattedDateOfBirth, address });
       setSuccessMessage('Cadastro realizado com sucesso! Redirecionando para a página de login...');
       setTimeout(() => {
         // Redirecionar para a página de login após 3 segundos
@@ -73,7 +31,15 @@ export default function CadastroPage() {
     }
   };
 
-  // Função para formatar a data de nascimento no formato "ano-mês-dia"
+  const fetchAddress = async (cep: string) => {
+    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    if (!response.ok) {
+      throw new Error('Erro ao buscar endereço');
+    }
+    return response.json();
+  };
+
+  // Função  data de nascimento no formato "ano-mês-dia"
   const formatDateOfBirth = (date: string): string => {
     const [year, month, day] = date.split('-');
     return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
@@ -82,7 +48,7 @@ export default function CadastroPage() {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl text-center font-bold mb-4">Cadastre-se para participar do programa de pontos!</h1>
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-8 rounded-md shadow-md">
+      <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-8 rounded-md shadow-md space-y-4">
         <div className="mb-4">
           <label htmlFor="user_name" className="block text-sm font-medium text-gray-700">Nome</label>
           <input
@@ -101,17 +67,6 @@ export default function CadastroPage() {
             type="text"
             value={lastname}
             onChange={(e) => setLastname(e.target.value)}
-            required
-            className="border border-gray-300 rounded-md mt-1 px-3 py-2 w-full focus:outline-none focus:border-blue-500"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="cep" className="block text-sm font-medium text-gray-700">CEP</label>
-          <input
-            id="cep"
-            type="text"
-            value={cep}
-            onChange={handleCepChange}
             required
             className="border border-gray-300 rounded-md mt-1 px-3 py-2 w-full focus:outline-none focus:border-blue-500"
           />
@@ -151,8 +106,18 @@ export default function CadastroPage() {
             className="border border-gray-300 rounded-md mt-1 px-3 py-2 w-full focus:outline-none focus:border-blue-500"
           />
         </div>
-        
-        <button type="submit" className="bg-customColor text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+        <div className="mb-4">
+          <label htmlFor="cep" className="block text-sm font-medium text-gray-700">CEP</label>
+          <input
+            id="cep"
+            type="text"
+            value={cep}
+            onChange={(e) => setCep(e.target.value)}
+            required
+            className="border border-gray-300 rounded-md mt-1 px-3 py-2 w-full focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <button type="submit" className="bg-customColor text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 w-full">
           Cadastrar
         </button>
         {successMessage && <p className="text-green-500 mt-2">{successMessage}</p>}
