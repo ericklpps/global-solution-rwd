@@ -20,7 +20,7 @@ export default function Doacoes() {
             const base64String = reader.result as string;
 
             const newDonation = {
-                donator_name: nome,
+                nomeDoador: nome,
                 comprovante: base64String,
             };
 
