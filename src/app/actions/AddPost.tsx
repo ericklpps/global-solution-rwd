@@ -1,4 +1,3 @@
-"use client"
 import React, { useState } from "react";
 import { addPost } from "@/app/services/ApiPosts";
 import { IPost } from "@/app/types/pages";
@@ -9,26 +8,33 @@ interface AdicionarPostProps {
 
 const AdicionarPost: React.FC<AdicionarPostProps> = ({ onPostAdded }) => {
     const [formData, setFormData] = useState<IPost>({
-        username: '',
-        post_date: '',
-        url_img: '',
-        post_description: '',
-        v_function: ''
+        id: '', // Campo para o título (ID)
+        nomeUsuario: '',
+        dataPublicacao: '',
+        urlImagem: '',
+        descricaoPost: '',
+        funcaoVoluntario: ''
     });
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
-            const newPost = await addPost(formData);
+            if (!formData.id || !formData.nomeUsuario || !formData.dataPublicacao || !formData.urlImagem || !formData.descricaoPost || !formData.funcaoVoluntario) {
+                console.error('Todos os campos são obrigatórios!');
+                return;
+            }
+
+            await addPost(formData);
             alert('Post adicionado com sucesso');
             setFormData({
-                username: '',
-                post_date: '',
-                url_img: '',
-                post_description: '',
-                v_function: ''
+                id: '', // Limpa o campo de título (ID)
+                nomeUsuario: '',
+                dataPublicacao: '',
+                urlImagem: '',
+                descricaoPost: '',
+                funcaoVoluntario: ''
             });
-            onPostAdded(newPost);
+            onPostAdded(formData);
         } catch (error) {
             console.error('Erro ao adicionar post', error);
             alert('Erro ao adicionar post');
@@ -48,59 +54,71 @@ const AdicionarPost: React.FC<AdicionarPostProps> = ({ onPostAdded }) => {
             <h1 className="text-2xl font-bold mb-4">Adicione uma postagem</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                    <label htmlFor="username" className="block text-gray-700 font-bold mb-2">Usuário:</label>
+                    <label htmlFor="id" className="block text-gray-700 font-bold mb-2">Título:</label>
                     <input
-                        id="username"
+                        id="id"
                         type="text"
-                        name="username"
-                        value={formData.username}
+                        name="id"
+                        value={formData.id}
                         onChange={handleChange}
                         className="border border-gray-300 px-4 py-2 rounded-md w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="post_date" className="block text-gray-700 font-bold mb-2">Data de ajuda:</label>
+                    <label htmlFor="nomeUsuario" className="block text-gray-700 font-bold mb-2">Usuário:</label>
                     <input
-                        id="post_date"
+                        id="nomeUsuario"
+                        type="text"
+                        name="nomeUsuario"
+                        value={formData.nomeUsuario}
+                        onChange={handleChange}
+                        className="border border-gray-300 px-4 py-2 rounded-md w-full"
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="dataPublicacao" className="block text-gray-700 font-bold mb-2">Data de ajuda:</label>
+                    <input
+                        id="dataPublicacao"
                         type="date"
-                        name="post_date"
-                        value={formData.post_date}
+                        name="dataPublicacao"
+                        value={formData.dataPublicacao}
                         onChange={handleChange}
                         className="border border-gray-300 px-4 py-2 rounded-md w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="url_img" className="block text-gray-700 font-bold mb-2">URL da Imagem:</label>
+                    <label htmlFor="urlImagem" className="block text-gray-700 font-bold mb-2">URL da Imagem:</label>
                     <input
-                        id="url_img"
+                        id="urlImagem"
                         type="text"
-                        name="url_img"
-                        value={formData.url_img}
+                        name="urlImagem"
+                        value={formData.urlImagem}
                         onChange={handleChange}
                         className="border border-gray-300 px-4 py-2 rounded-md w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="post_description" className="block text-gray-700 font-bold mb-2">Faça um comentário:</label>
+                    <label htmlFor="descricaoPost" className="block text-gray-700 font-bold mb-2">Faça um comentário:</label>
                     <textarea
-                        id="post_description"
-                        name="post_description"
-                        value={formData.post_description}
+                        id="descricaoPost"
+                        name="descricaoPost"
+                        value={formData.descricaoPost}
                         onChange={handleChange}
                         className="border border-gray-300 px-4 py-2 rounded-md w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="v_function" className="block text-gray-700 font-bold mb-2">Função:</label>
+                    <label htmlFor="funcaoVoluntario" className="block text-gray-700 font-bold mb-2">Função:</label>
                     <input
-                        id="v_function"
+                        id="funcaoVoluntario"
                         type="text"
-                        name="v_function"
-                        value={formData.v_function}
+                        name="funcaoVoluntario"
+                        value={formData.funcaoVoluntario}
                         onChange={handleChange}
                         className="border border-gray-300 px-4 py-2 rounded-md w-full"
                         required

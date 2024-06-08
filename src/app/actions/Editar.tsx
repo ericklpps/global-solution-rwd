@@ -1,4 +1,3 @@
-"use client"
 import React, { useState } from "react";
 import { editPost } from "@/app/services/ApiPosts";
 import { IPost } from "@/app/types/pages";
@@ -37,59 +36,59 @@ const EditarPost: React.FC<EditarPostProps> = ({ post, onPostEdited, onCancel })
             <h1 className="text-2xl font-bold mb-4">Editar Post</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                    <label htmlFor="username" className="block text-gray-700 font-bold mb-2">Nome de Usuário:</label>
+                    <label htmlFor="nomeUsuario" className="block text-gray-700 font-bold mb-2">Nome de Usuário:</label>
                     <input
-                        id="username"
+                        id="nomeUsuario"
                         type="text"
-                        name="username"
-                        value={formData.username}
+                        name="nomeUsuario"
+                        value={formData.nomeUsuario}
                         onChange={handleChange}
                         className="border border-gray-300 px-4 py-2 rounded-md w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="post_date" className="block text-gray-700 font-bold mb-2">Data:</label>
+                    <label htmlFor="dataPublicacao" className="block text-gray-700 font-bold mb-2">Data:</label>
                     <input
-                        id="post_date"
+                        id="dataPublicacao"
                         type="date"
-                        name="post_date"
-                        value={formData.post_date}
+                        name="dataPublicacao"
+                        value={formData.dataPublicacao}
                         onChange={handleChange}
                         className="border border-gray-300 px-4 py-2 rounded-md w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="url_img" className="block text-gray-700 font-bold mb-2">URL da Imagem:</label>
+                    <label htmlFor="urlImagem" className="block text-gray-700 font-bold mb-2">URL da Imagem:</label>
                     <input
-                        id="url_img"
+                        id="urlImagem"
                         type="text"
-                        name="url_img"
-                        value={formData.url_img}
+                        name="urlImagem"
+                        value={formData.urlImagem}
                         onChange={handleChange}
                         className="border border-gray-300 px-4 py-2 rounded-md w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="post_description" className="block text-gray-700 font-bold mb-2">Descrição:</label>
+                    <label htmlFor="descricaoPost" className="block text-gray-700 font-bold mb-2">Descrição:</label>
                     <textarea
-                        id="post_description"
-                        name="post_description"
-                        value={formData.post_description}
+                        id="descricaoPost"
+                        name="descricaoPost"
+                        value={formData.descricaoPost}
                         onChange={handleChange}
                         className="border border-gray-300 px-4 py-2 rounded-md w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="v_function" className="block text-gray-700 font-bold mb-2">Função:</label>
+                    <label htmlFor="funcaoVoluntario" className="block text-gray-700 font-bold mb-2">Função:</label>
                     <input
-                        id="v_function"
+                        id="funcaoVoluntario"
                         type="text"
-                        name="v_function"
-                        value={formData.v_function}
+                        name="funcaoVoluntario"
+                        value={formData.funcaoVoluntario}
                         onChange={handleChange}
                         className="border border-gray-300 px-4 py-2 rounded-md w-full"
                         required

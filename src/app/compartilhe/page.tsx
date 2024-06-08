@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useEffect, useState } from "react";
 import { getPosts, deletePost } from "@/app/services/ApiPosts";
 import AdicionarPost from "@/app/actions/AddPost";
@@ -26,6 +26,10 @@ const PostsPage = () => {
     }, []);
 
     const handlePostAdded = (newPost: IPost) => {
+        if (!newPost.id) {
+            console.error('O título da postagem é obrigatório!');
+            return;
+        }
         setPosts([...posts, newPost]);
     };
 
@@ -68,13 +72,14 @@ const PostsPage = () => {
                     {posts.map(post => (
                         <div key={post.id} className="border rounded-lg shadow-md bg-white text-center">
                             <div className="w-full h-48 overflow-hidden rounded-t-lg cursor-pointer" onClick={() => handlePostClick(post)}>
-                                <img src={post.url_img} alt={`Imagem do post ${post.id}`} className="w-full h-full object-cover" />
+                                <img src={post.urlImagem} alt={`Imagem do post ${post.id}`} className="w-full h-full object-cover" />
                             </div>
                             <div className="p-4">
-                                <h3 className="font-bold text-lg mt-2">{post.username}</h3>
-                                <p className="text-xs text-gray-500 mb-2">{post.post_date}</p>
-                                <p className="text-xs text-gray-500 mb-2">Função: {post.v_function}</p>
-                                <p className="text-xs text-gray-500 mb-2">Descrição: {post.post_description}</p>
+                                <h3 className="font-bold text-lg mt-2">{post.nomeUsuario}</h3>
+                                <p className="text-xs text-gray-500 mb-2">{post.dataPublicacao}</p>
+                                <p className="text-xs text-gray-500 mb-2">Título: {post.id}</p>
+                                <p className="text-xs text-gray-500 mb-2">Função: {post.funcaoVoluntario}</p>
+                                <p className="text-xs text-gray-500 mb-2">Descrição: {post.descricaoPost}</p>
                                 <div className="flex justify-center space-x-4">
                                     {selectedPost && selectedPost.id === post.id && (
                                         <>

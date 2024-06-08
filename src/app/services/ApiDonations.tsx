@@ -1,16 +1,16 @@
 import axios from 'axios';
-import { IDonations } from '@/app/types/pages';
+import { IDonation } from '@/app/types/pages';
 
 const api = axios.create({
-    baseURL: 'http://localhost:5000/',
+    baseURL: 'http://localhost:8080/',
 });
 
-export const getDonations = async (): Promise<IDonations[]> => {
-    const response = await api.get('/donations');
+export const getDonations = async (): Promise<IDonation[]> => {
+    const response = await api.get('/doacoes');
     return response.data;
 };
 
-export const addDonation = async (donation: IDonations) => {
-    const response = await api.post('/donations', donation);
+export const addDonation = async (donation: IDonation) => {
+    const response = await api.post('/doacoes', donation);
     return response.data;
 };

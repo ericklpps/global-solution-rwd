@@ -1,14 +1,16 @@
 "use client";
 import { useState } from 'react';
 import { addUser } from '@/app/services/ApiUsers';
+import { IUser } from '@/app/types/pages';
 
 export default function CadastroPage() {
-  const [user_name, setUser_name] = useState('');
-  const [lastname, setLastname] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [nomeUsuario, setNomeUsuario] = useState('');
+  const [sobrenome, setSobrenome] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [senha, setSenha] = useState('');
   const [cep, setCep] = useState('');
-  const [date_of_birth, setDateOfBirth] = useState('');
+  const [dataNascimento, setDataNascimento] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -16,11 +18,11 @@ export default function CadastroPage() {
     event.preventDefault();
 
     // Formatar a data de nascimento
-    const formattedDateOfBirth = formatDateOfBirth(date_of_birth);
+    const formattedDateOfBirth = formatDateOfBirth(dataNascimento);
 
     try {
-      const address = await fetchAddress(cep);
-      await addUser({ user_name, lastname, cep, email, password, date_of_birth: formattedDateOfBirth, address });
+      const newUser: IUser = { id: cpf, nomeUsuario, sobrenome, cep, email, senha, dataNascimento: formattedDateOfBirth};
+      await addUser(newUser);
       setSuccessMessage('Cadastro realizado com sucesso! Redirecionando para a página de login...');
       setTimeout(() => {
         // Redirecionar para a página de login após 3 segundos
@@ -31,13 +33,6 @@ export default function CadastroPage() {
     }
   };
 
-  const fetchAddress = async (cep: string) => {
-    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-    if (!response.ok) {
-      throw new Error('Erro ao buscar endereço');
-    }
-    return response.json();
-  };
 
   // Função data de nascimento no formato "ano-mês-dia"
   const formatDateOfBirth = (date: string): string => {
@@ -50,35 +45,46 @@ export default function CadastroPage() {
       <h1 className="text-3xl text-center font-bold mb-4">Cadastre-se para participar do programa de pontos!</h1>
       <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-8 rounded-md shadow-md space-y-4">
         <div>
-          <label htmlFor="user_name" className="block text-sm font-medium text-gray-700">Nome</label>
+          <label htmlFor="cpf" className="block text-sm font-medium text-gray-700">CPF</label>
           <input
-            id="user_name"
+            id="cpf"
             type="text"
-            value={user_name}
-            onChange={(e) => setUser_name(e.target.value)}
+            value={cpf}
+            onChange={(e) => setCpf(e.target.value)}
             required
             className="border border-gray-300 rounded-md mt-1 px-3 py-2 w-full focus:outline-none focus:border-blue-500"
           />
         </div>
         <div>
-          <label htmlFor="lastname" className="block text-sm font-medium text-gray-700">Sobrenome</label>
+          <label htmlFor="nomeUsuario" className="block text-sm font-medium text-gray-700">Nome</label>
           <input
-            id="lastname"
+            id="nomeUsuario"
             type="text"
-            value={lastname}
-            onChange={(e) => setLastname(e.target.value)}
+            value={nomeUsuario}
+            onChange={(e) => setNomeUsuario(e.target.value)}
             required
             className="border border-gray-300 rounded-md mt-1 px-3 py-2 w-full focus:outline-none focus:border-blue-500"
           />
         </div>
         <div>
-          <label htmlFor="date_of_birth" className="block text-sm font-medium text-gray-700">Data de Nascimento (AAAA-MM-DD)</label>
+          <label htmlFor="sobrenome" className="block text-sm font-medium text-gray-700">Sobrenome</label>
           <input
-            id="date_of_birth"
+            id="sobrenome"
+            type="text"
+            value={sobrenome}
+            onChange={(e) => setSobrenome(e.target.value)}
+            required
+            className="border border-gray-300 rounded-md mt-1 px-3 py-2 w-full focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div>
+          <label htmlFor="dataNascimento" className="block text-sm font-medium text-gray-700">Data de Nascimento (AAAA-MM-DD)</label>
+          <input
+            id="dataNascimento"
             type="text"
             pattern="\d{4}-\d{2}-\d{2}"
-            value={date_of_birth}
-            onChange={(e) => setDateOfBirth(e.target.value)}
+            value={dataNascimento}
+            onChange={(e) => setDataNascimento(e.target.value)}
             required
             className="border border-gray-300 rounded-md mt-1 px-3 py-2 w-full focus:outline-none focus:border-blue-500"
           />
@@ -96,12 +102,12 @@ export default function CadastroPage() {
           />
         </div>
         <div>
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700">Senha</label>
+          <label htmlFor="senha" className="block text-sm font-medium text-gray-700">Senha</label>
           <input
-            id="password"
+            id="senha"
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
             required
             className="border border-gray-300 rounded-md mt-1 px-3 py-2 w-full focus:outline-none focus:border-blue-500"
           />

@@ -1,27 +1,27 @@
-"use client"
+"use client";
 import { useState } from 'react';
 import { addVolunteer } from '@/app/services/ApiVolunteers';
 import { IVolunteer } from '@/app/types/pages';
-import InputMask from 'react-input-mask';
 
 export default function Voluntarios() {
     const [nomeCompleto, setNomeCompleto] = useState('');
     const [telefone, setTelefone] = useState('');
     const [pontoDeColeta, setPontoDeColeta] = useState('');
-    const [role, setRole] = useState('');
-    const [inscricao, setInscricao] = useState<string | null>(null);
+    const [funcaoUsuario, setFuncaoUsuario] = useState('');
+    const [cpf, setCpf] = useState('');
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const volunteer: IVolunteer = {
-            volunteer_name: nomeCompleto,
-            phone: telefone,
-            collect_point: pontoDeColeta,
-            user_function: role
+            nomeVoluntario: nomeCompleto,
+            telefone: telefone,
+            pontoColeta: pontoDeColeta,
+            funcaoUsuario: funcaoUsuario,
+            id: cpf
         };
         try {
-            const response = await addVolunteer(volunteer);
-            setInscricao(response.id ?? null);
+            await addVolunteer(volunteer);
+            alert(`Inscrição registrada! Apresente seu CPF no ponto de coleta.`);
         } catch (error) {
             console.error('Error adding volunteer:', error);
         }
@@ -43,14 +43,28 @@ export default function Voluntarios() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="telefone" className="block mb-2 font-medium">Telefone:</label>
-                    <InputMask 
-                        mask="(99) 99999-9999" 
+                    <label htmlFor="telefone" className="block mb-2 font-medium">Telefone (Formato: DDD+Número):</label>
+                    <input 
                         type="tel" 
                         id="telefone" 
                         value={telefone} 
-                        onChange={(event) => setTelefone(event.currentTarget.value)} 
+                        onChange={(event) => setTelefone(event.target.value)} 
                         required 
+                        pattern="\d{2}\d{8,9}" 
+                        title="Digite apenas números no formato DDD+Número" 
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-900"
+                    />
+                </div>
+                <div>
+                    <label htmlFor="cpf" className="block mb-2 font-medium">CPF (Apenas números):</label>
+                    <input 
+                        type="text" 
+                        id="cpf" 
+                        value={cpf} 
+                        onChange={(event) => setCpf(event.target.value)} 
+                        required 
+                        pattern="\d{11}" 
+                        title="Digite apenas números (11 dígitos)" 
                         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-900"
                     />
                 </div>
@@ -75,11 +89,11 @@ export default function Voluntarios() {
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="role" className="block mb-2 font-medium">Função:</label>
+                    <label htmlFor="funcaoUsuario" className="block mb-2 font-medium">Função:</label>
                     <select 
-                        id="role" 
-                        value={role} 
-                        onChange={(event) => setRole(event.currentTarget.value)} 
+                        id="funcaoUsuario" 
+                        value={funcaoUsuario} 
+                        onChange={(event) => setFuncaoUsuario(event.currentTarget.value)} 
                         required 
                         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-900"
                     >
@@ -95,11 +109,6 @@ export default function Voluntarios() {
                     Registrar
                 </button>
             </form>
-            {inscricao && (
-                <p className="mt-4 text-green-600">
-                    Inscrição registrada! Seu número de inscrição é {inscricao}. Apresente este comprovante no ponto de coleta.
-                </p>
-            )}
             <p className="text-lg mt-8 mb-6 text-center p-4 bg-blue-100 rounded-lg shadow-md border border-blue-300">
                 Ao se voluntariar e realizar as ações, você pode acumular pontos e trocar por produtos da nossa ONG. 
                 É uma forma de agradecermos pelo seu esforço e dedicação à causa. Quanto mais você participa, mais pontos acumula!
